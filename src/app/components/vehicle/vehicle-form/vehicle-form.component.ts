@@ -36,8 +36,10 @@ export class VehicleFormComponent implements OnInit {
     this.vehicleForm = this.fb.group({
       make: ['', Validators.required],
       model: ['', Validators.required],
+      caption: ['', Validators.required],
       price: ['0', Validators.required],
       speed: ['0', Validators.required],
+      imgUrl: ['', Validators.required],
       isRegistered: [false, Validators.required]
     });
   }

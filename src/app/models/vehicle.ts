@@ -1,6 +1,7 @@
 
 export class Vehicle {
     $key?: string;
+    imgUrl: string;
     make: string;
     model: string;
     captions: string;

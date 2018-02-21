@@ -19,6 +19,7 @@ export class VehiclesService {
 
   addVehicle(vehicle: Vehicle) {
     vehicle.lastupdate = Date.now();
+    vehicle.dateadded = Date.now();
     return this.vehicleCollection.add(vehicle);
   }
 
