@@ -26,7 +26,7 @@
     </div>
     <div class="col-sm-6">
       <div class="form-group">
-        <label for="speed">Speed: </label>
+        <label for="speed">Speed: (Killometer)</label>
         <input type="number" id="speed" formControlName="speed" class="form-control" placeholder="Vehicle Speed" min="0">
       </div>
     </div>
@@ -43,5 +43,3 @@
   </div>
   <button type="submit" class="btn btn-outline-primary" (click)="submitVehicle()">Submit</button>
 </form>
-
-<p> {{vehicleForm.value | json}} </p>
