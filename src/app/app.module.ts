@@ -11,12 +11,14 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { VehiclesService } from './services/vehicles.service';
 import { VehicleFormComponent } from './components/vehicle/vehicle-form/vehicle-form.component';
 import { AppRoutes } from './router/app.router';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VehicleComponent,
     VehicleFormComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
