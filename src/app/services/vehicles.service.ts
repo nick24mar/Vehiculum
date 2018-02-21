@@ -1,12 +1,15 @@
 
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Vehicle } from '../models/vehicle';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class VehiclesService {
   private vehicleCollection: AngularFirestoreCollection<Vehicle>;
+  private vehicleDocument: AngularFirestoreDocument<Vehicle>;
+
+  private vehicle: Observable<Vehicle>;
   private vehicles: Observable<Vehicle[]>;
 
   constructor(private afs: AngularFirestore) {
@@ -15,6 +18,13 @@ export class VehiclesService {
 
   getVehicles() {
     return this.vehicles;
+  }
+
+  getVehicle(id: string) {
+    this.vehicleDocument = this.afs.doc<Vehicle>(`vehicles/${id}`);
+    this.vehicle = this.vehicleDocument.valueChanges();
+
+    return this.vehicle;
   }
 
   addVehicle(vehicle: Vehicle) {

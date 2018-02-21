@@ -12,6 +12,7 @@ import { VehiclesService } from './services/vehicles.service';
 import { VehicleFormComponent } from './components/vehicle/vehicle-form/vehicle-form.component';
 import { AppRoutes } from './router/app.router';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DetailsComponent } from './components/vehicle/details/details.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     VehicleComponent,
     VehicleFormComponent,
     NavbarComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
