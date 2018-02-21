@@ -17,7 +17,6 @@ export class VehicleComponent implements OnInit {
     this.vehicleSvc.getVehicles()
       .subscribe(vehicle => {
         this.vehicles = vehicle
-        console.log(this.vehicles);
       });
   }
 
