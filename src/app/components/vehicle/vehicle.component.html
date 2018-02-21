@@ -1,0 +1,31 @@
+<h2>List of Available Vehicles</h2>
+
+<div class="card-columns">
+  <div class="card" *ngFor="let vehicle of vehicles">
+    <img class="card-img-top" [src]="vehicle.imgUrl" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ vehicle.make }}, {{ vehicle.model }}</h5>
+      <p class="card-text">
+        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little
+        bit longer.
+      </p>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Make: {{ vehicle.make }} </li>
+        <li class="list-group-item">Model: {{ vehicle.model }} </li>
+        <li class="list-group-item">Price: {{ vehicle.price }}</li>
+        <li class="list-group-item">Speed: {{ vehicle.speed }}</li>
+        <li class="list-group-item">Registered : {{ vehicle.isRegistered }}</li>
+      </ul>
+
+      <div class="card-body">
+        <a href="#" class="card-link">Call Seller</a>
+        <a href="#" class="card-link">View</a>
+      </div>
+
+      <p class="card-text">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </p>
+    </div>
+  </div>
+</div>
