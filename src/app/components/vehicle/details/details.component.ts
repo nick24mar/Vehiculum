@@ -16,9 +16,9 @@ export class DetailsComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly vehicleSvc: VehiclesService
   ) {
-    route.params.subscribe(p => {
-      this.vehicleId = p.id;
-    })
+    this.vehicleId = route.snapshot.paramMap.get('id');
+    
+    console.log(this.vehicleId);
   }
 
   ngOnInit() {
