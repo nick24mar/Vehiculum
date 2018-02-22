@@ -2,3 +2,16 @@
 .header {
     margin: 25px 0;
 }
+
+.btn-add {
+    background-color: #FF6600;
+    color: #ffffff;
+}
+
+.btn-add:hover {
+    background-color: #ee5500;
+}
+
+.btn-add:focus {
+    outline-color: #ee5500;
+}
