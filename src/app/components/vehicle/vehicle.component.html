@@ -1,6 +1,6 @@
 <div class="header">
   <h2>List of Available Vehicles</h2>
-  <button type="button" class="btn btn-add" (click)="navigate()">Add Vehicle</button>
+  <button *ngIf="isLoggedIn" type="button" class="btn btn-add" (click)="navigate()">Add Vehicle</button>
 </div>
 
 <div *ngIf="vehicles; else loading" class="card-columns">
@@ -8,14 +8,14 @@
     <img class="card-img-top" [src]="vehicle.imgUrl" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{ vehicle.make }}, {{ vehicle.model }}</h5>
-      <p class="card-text"> {{ vehicle.caption }} </p>
+      <p class="card-text"> {{ vehicle.captions }} </p>
 
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Make: {{ vehicle.make }} </li>
         <li class="list-group-item">Model: {{ vehicle.model }} </li>
         <li class="list-group-item">Price: {{ vehicle.price | currency:'PHP':'symbol-narrow':'1.2-2' }}</li>
         <li class="list-group-item">Speed: {{ vehicle.speed | number:'1.0' }} km</li>
-        <li class="list-group-item">Registered : {{ vehicle.isRegistered }}</li>
+        <li class="list-group-item">Registered : {{ vehicle.isregistered }}</li>
       </ul>
 
       <div class="card-body">

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VehiclesService } from '../../services/vehicles.service';
+import { VehiclesService } from '../../services/vehicle/vehicles.service';
 import { Vehicle } from '../../models/vehicle';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/user/auth.service';
 
 @Component({
   selector: 'app-vehicle',
@@ -11,17 +12,23 @@ import { Router } from '@angular/router';
 export class VehicleComponent implements OnInit {
 
   vehicles: Vehicle[];
+  isLoggedIn: boolean;
 
   constructor(
     private vehicleSvc: VehiclesService,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
     this.vehicleSvc.getVehicles()
       .subscribe(vehicle => {
-        this.vehicles = vehicle
+        this.vehicles = vehicle;
       });
+
+    this.auth.user.subscribe(user => {
+      this.isLoggedIn = user ? true : false;
+    });
   }
 
   navigate() {

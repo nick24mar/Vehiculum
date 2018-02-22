@@ -1,0 +1,31 @@
+<ng-container>
+
+  <form [formGroup]="loginForm" (ngSubmit)="loginWithEmail()">
+    <h2>Login into your account</h2>
+
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input type="email" class="form-control" formControlName="email" placeholder="email">
+    </div>
+
+    <div *ngIf="email.invalid">
+      <div *ngIf="email.touched && email.dirty" class="alert alert-danger">
+        Invalid Email address..
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password : </label>
+      <input type="password" class="form-control" formControlName="password" placeholder="password" required>
+    </div>
+
+    <div *ngIf="password.invalid && password.dirty">
+      <div class="alert alert-danger">
+        Password must be between 6 and 24 chars and have at least one number
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-outline-dark" [disabled]="!loginForm.valid">Submit</button>
+    <button type="submit" class="btn btn-primary" [routerLink]="['/signup']">Sign up</button>
+  </form>
+</ng-container>
