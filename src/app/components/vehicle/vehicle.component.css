@@ -1,17 +1,41 @@
-
 .header {
-    margin: 25px 0;
+  margin: 25px 0;
 }
 
 .btn-add {
-    background-color: #FF6600;
-    color: #ffffff;
+  background-color: #FF6600;
+  color: #ffffff;
 }
 
 .btn-add:hover {
-    background-color: #ee5500;
+  background-color: #ee5500;
 }
 
 .btn-add:focus {
-    outline-color: #ee5500;
+  outline-color: #ee5500;
+}
+
+.loader-container {
+    position: absolute;
+    left: 45%;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  /* Light grey */
+  border-top: 8px solid #1e1e1e;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

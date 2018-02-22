@@ -3,7 +3,7 @@
   <button type="button" class="btn btn-add" (click)="navigate()">Add Vehicle</button>
 </div>
 
-<div class="card-columns">
+<div *ngIf="vehicles; else loading" class="card-columns">
   <div class="card" *ngFor="let vehicle of vehicles">
     <img class="card-img-top" [src]="vehicle.imgUrl" alt="Card image cap">
     <div class="card-body">
@@ -29,3 +29,9 @@
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>
