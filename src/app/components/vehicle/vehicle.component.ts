@@ -30,7 +30,6 @@ export class VehicleComponent implements OnInit {
       this.isLoggedIn = user ? true : false;
     });
   }
-
   navigate() {
     this.router.navigate(['/vehicles/new']);
   }

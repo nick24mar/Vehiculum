@@ -21,7 +21,7 @@
       </ul>
 
       <div class="card-body">
-        <a href="#" class="card-link">Call Seller</a>
+        <button type="button" class="btn btn-danger" *ngIf="auth.user | async" (click)="deleteVehicle()">Delete</button>
       </div>
 
       <p class="card-text">

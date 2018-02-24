@@ -1,7 +1,8 @@
+import { Vehicle } from './../../models/vehicle';
+import { User } from '../../models/user';
 
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Vehicle } from '../../models/vehicle';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -13,14 +14,21 @@ export class VehiclesService {
   private vehicles: Observable<Vehicle[]>;
 
   constructor(private afs: AngularFirestore) {
-    this.initVehicleDb();
+    this.vehicleCollection = this.afs.collection('vehicles');
   }
 
   getVehicles() {
-    return this.vehicles;
+    return this.vehicles = this.vehicleCollection.snapshotChanges().map(action => {
+      return action.map(a => {
+        const data = a.payload.doc.data() as Vehicle;
+        const id = a.payload.doc.id;
+
+        return { id, ...data };
+      });
+    });
   }
 
-  getVehicle(id: string) {
+  getVehicleById(id: string) {
     this.vehicleDocument = this.afs.doc<Vehicle>(`vehicles/${id}`);
     this.vehicle = this.vehicleDocument.valueChanges();
 
@@ -30,19 +38,14 @@ export class VehiclesService {
   addVehicle(vehicle: Vehicle) {
     vehicle.lastupdate = Date.now();
     vehicle.dateadded = Date.now();
+
     return this.vehicleCollection.add(vehicle);
   }
 
-  private initVehicleDb() {
-    this.vehicleCollection = this.afs.collection('vehicles');
-    this.vehicles = this.vehicleCollection.snapshotChanges().map(action => {
-      return action.map(a => {
-        const data = a.payload.doc.data() as Vehicle;
-        const id = a.payload.doc.id;
+  deleteVehicle(id: string) {
+    this.vehicleDocument = this.afs.doc<Vehicle>(`vehicles/${id}`);
 
-        return { id, ...data };
-      })
-    })
+    return this.vehicleDocument.delete();
   }
 
 }

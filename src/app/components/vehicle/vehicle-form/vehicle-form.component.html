@@ -1,6 +1,9 @@
 <h2>Add Vehicle</h2>
 
-<form [formGroup]="vehicleForm" class="form-container">
+<div *ngIf="done" class="alert alert-success">
+  <p>Successfully Added</p>
+</div>
+<form [formGroup]="vehicleForm" class="form-container" (ngSubmit)="submitVehicle()">
 
   <div class="form-group">
     <label for="make">Make: </label>
@@ -41,5 +44,5 @@
       <input type="checkbox" formControlName="isRegistered" class="form-check-input" id="isRegistered"> Registered?
     </label>
   </div>
-  <button type="submit" class="btn btn-outline-primary" (click)="submitVehicle()">Submit</button>
+  <button type="submit" class="btn btn-outline-primary">Submit</button>
 </form>

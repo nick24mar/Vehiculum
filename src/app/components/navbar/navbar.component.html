@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg custom-nav">
 
-  <div class="container-fluid">
+  <div class="container">
 
     <a class="navbar-brand" [routerLink]="['/vehicles']">Vehiculum</a>
 
@@ -10,15 +10,20 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-right">
+      <ul class="navbar-nav mr-auto">
 
         <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!user">
           <a class="nav-link" [routerLink]="['/login']">login</a>
         </li>
 
         <li class="nav-item" *ngIf="user">
+          <a class="nav-link" style="cursor: pointer">{{ user.email }}</a>
+        </li>
+
+        <li class="nav-item" *ngIf="user">
           <a class="nav-link" style="cursor: pointer" (click)="signOutUser()">logout</a>
         </li>
+
 
       </ul>
     </div>

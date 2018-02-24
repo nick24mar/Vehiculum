@@ -14,6 +14,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthService {
 
+  private userRef: AngularFirestoreDocument<User>;
   user: Observable<User>;
 
   constructor(
@@ -21,7 +22,13 @@ export class AuthService {
     private afs: AngularFirestore,
     private router: Router) {
 
-      this.user = afAuth.authState;
+      this.user = afAuth.authState.switchMap(user => {
+        if (user) {
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        } else {
+          return Observable.of(null);
+        }
+      });
   }
 
   signupWithEmail(credentials: UserCredentials, fullName: any) {
@@ -52,7 +59,7 @@ export class AuthService {
   }
 
   private setUserDoc(user, fullName: string) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    this.userRef = this.afs.doc(`users/${user.uid}`);
 
     const data: User = {
       uid: user.uid,
@@ -60,7 +67,7 @@ export class AuthService {
       fullName: fullName,
     };
 
-    return userRef.set(data);
+    return this.userRef.set(data);
   }
 
   private handleError(errMsg) {

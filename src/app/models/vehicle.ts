@@ -1,3 +1,4 @@
+import { User } from './user';
 
 export class Vehicle {
     $key?: string;
@@ -10,4 +11,5 @@ export class Vehicle {
     dateadded: number;
     isregistered: boolean;
     speed: number;
+    user: User;
 }

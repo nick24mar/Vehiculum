@@ -1,5 +1,6 @@
+import { AuthService } from './../../../services/user/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VehiclesService } from '../../../services/vehicle/vehicles.service';
 import { Vehicle } from '../../../models/vehicle';
 
@@ -14,16 +15,27 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly vehicleSvc: VehiclesService
+    private readonly router: Router,
+    private readonly vehicleSvc: VehiclesService,
+    public readonly auth: AuthService
   ) {
-    this.vehicleId = route.snapshot.paramMap.get('id');
-    
-    console.log(this.vehicleId);
   }
 
   ngOnInit() {
-    this.vehicleSvc.getVehicle(this.vehicleId)
+    this.vehicleId = this.route.snapshot.paramMap.get('id');
+
+    this.vehicleSvc.getVehicleById(this.vehicleId)
       .subscribe(v => this.vehicle = v);
   }
 
+  deleteVehicle() {
+    this.vehicleSvc.deleteVehicle(this.vehicleId)
+      .then(() => {
+        console.log('successfully deleted');
+        this.router.navigate(['/vehicles']);
+      })
+      .catch(err => console.log(err));
+  }
+
 }
+

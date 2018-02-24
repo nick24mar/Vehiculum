@@ -1,3 +1,5 @@
+import { User } from './../../../models/user';
+import { AuthService } from './../../../services/user/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { VehiclesService } from '../../../services/vehicle/vehicles.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,24 +13,31 @@ import { Router } from '@angular/router';
 })
 export class VehicleFormComponent implements OnInit {
   vehicleForm: FormGroup;
+  user: User;
+  done = false;
 
   constructor(
     private readonly vehicleSvc: VehiclesService,
     private readonly fb: FormBuilder,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly auth: AuthService
   ) {
     this.initForm();
   }
 
   ngOnInit() {
+    this.auth.user.subscribe(user => {
+      this.user = user;
+    });
   }
 
   submitVehicle() {
     const data: Vehicle = this.vehicleForm.value;
-    data.lastupdate = Date.now();
-
     this.vehicleSvc.addVehicle(data)
-      .then(() => this.router.navigate(['vehicles']))
+      .then(() =>  {
+        this.done = true;
+        this.router.navigate(['/vehicles']);
+      })
       .catch(err => console.log(err));
   }
 
