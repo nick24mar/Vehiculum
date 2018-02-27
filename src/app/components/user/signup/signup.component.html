@@ -1,50 +1,68 @@
 <ng-container *ngIf="(authService.user | async) || {} as user">
 
-  <form [formGroup]="signUpForm" *ngIf="!user.uid" (ngSubmit)="signUp()">
-    <h2>Create your Account</h2>
+  <div class="card mt-3">
+    <div class="card-header elegant-color white-text">
+        <p class="h5 text-center mb-3 mt-3"><i class="fa fa-user-circle fa-1x"></i>&nbsp;Signup</p>
+    </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="firstname">First Name: </label>
-          <input type="text" class="form-control" formControlName="firstName" placeholder="Enter first name">
+    <div class="card-body">
+      <form [formGroup]="signUpForm" *ngIf="!user.uid" (ngSubmit)="signUp()">
+
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="md-form">
+              <!-- <i class="fa fa-envelope prefix grey-text"></i> -->
+              <input type="text" id="user-fname" class="form-control" formControlName="firstName" mdbActive>
+              <label for="user-fname">Your first name</label>
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+            <div class="md-form">
+              <!-- <i class="fa fa-lock prefix grey-text"></i> -->
+              <input type="text" id="user-lname" class="form-control" formControlName="lastName" mdbActive>
+              <label for="user-lname">Your last name</label>
+            </div>
+
+          </div>
+
         </div>
-      </div>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="lastname">Last Name: </label>
-          <input type="text" class="form-control" formControlName="lastName" placeholder="Enter last name">
+        <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input type="text" id="defaultForm-email" class="form-control" formControlName="email" mdbActive>
+          <label for="defaultForm-email">Your email</label>
+
+          <div *ngIf="email.invalid">
+            <div *ngIf="email.touched && email.dirty" class="alert alert-danger">
+              Invalid Email address..
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="email">Email: </label>
-      <input type="email" class="form-control" formControlName="email" placeholder="email">
-    </div>
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" class="form-control" formControlName="password" mdbActive>
+          <label for="defaultForm-pass">Your password</label>
 
-    <div *ngIf="email.invalid">
-      <div *ngIf="email.touched && email.dirty" class="alert alert-danger">
-        Invalid Email address..
-      </div>
-    </div>
+          <div *ngIf="password.invalid && password.touched">
+            <div class="alert alert-danger">
+              Password must be between 6 and 24 chars and have at least one number
+            </div>
+          </div>
 
-    <div class="form-group">
-      <label for="password">Password : </label>
-      <input type="password" class="form-control" formControlName="password" placeholder="password" required>
-    </div>
+        </div>
 
-    <div *ngIf="password.invalid && password.touched">
-      <div class="alert alert-danger">
-        Password must be between 6 and 24 chars and have at least one number
-      </div>
-    </div>
+        <div *ngIf="signUpForm.valid">
+          <div class="alert alert-success">This form looks good! Almost there.</div>
+        </div>
 
-    <div *ngIf="signUpForm.valid">
-      <div class="alert alert-success">This form looks good! Almost there.</div>
+        <button type="submit" class="btn elegant-color" [disabled]="!signUpForm.valid">Submit</button>
+      </form>
     </div>
+  </div>
 
-    <button type="submit" class="btn btn-outline-dark" [disabled]="!signUpForm.valid">Submit</button>
-  </form>
 </ng-container>

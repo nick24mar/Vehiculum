@@ -32,7 +32,7 @@ import { SignupComponent } from './components/user/signup/signup.component';
     SignupComponent,
   ],
   imports: [
-    MDBBootstrapModule,
+    MDBBootstrapModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

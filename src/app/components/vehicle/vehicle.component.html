@@ -5,25 +5,29 @@
 
 <div *ngIf="vehicles; else loading" class="card-columns">
 
-  <div class="card mb-3" *ngFor="let vehicle of vehicles">
+  <div class="card" *ngFor="let vehicle of vehicles">
 
-    <img class="card-img-top" [src]="vehicle.imgUrl" alt="Card image cap">
+    <div class="view hm-white-slight waves-light" mdbRippleRadius>
+      <img [src]="vehicle.imgUrl" class="img-fluid card-img-top animated slideInUp" alt="Card image with a tree in a middle of a lake.">
+      <a>
+        <div class="mask"></div>
+      </a>
+    </div>
+
+    <!-- <img class="card-img-top" [src]="vehicle.imgUrl" alt="Card image cap"> -->
     <div class="card-body">
       <h5 class="card-title">{{ vehicle.user.fullName }}</h5>
-      <p class="card-text"> {{ vehicle.caption }} </p>
-
-      <div class="card-body">
-        <a href="#" class="card-link">Call Seller</a>
-        <a [routerLink]="['/vehicles/view', vehicle.id]" class="card-link">View</a>
-      </div>
-
       <p class="card-text">
         <small class="text-muted">{{ vehicle.dateadded | date:'medium'}}</small>
       </p>
+      <p class="card-text"> {{ vehicle.caption }} </p>
+
+      <a [routerLink]="['/vehicles/view', vehicle.id]" class="btn btn-elegant elegant-color-dark">View</a>
     </div>
   </div>
 
 </div>
+
 
 <ng-template #loading>
   <div class="loader-container">
