@@ -22,14 +22,11 @@ export class VehicleComponent implements OnInit {
 
   ngOnInit() {
     this.vehicleSvc.getVehicles()
-      .subscribe(vehicle => {
-        this.vehicles = vehicle;
-      });
+      .subscribe(vehicle =>
+        this.vehicles = vehicle);
 
-    this.auth.user.subscribe(user => {
-      console.log(user);
-      this.isLoggedIn = user ? true : false;
-    });
+    this.auth.user.subscribe(user =>
+      this.isLoggedIn = user ? true : false);
   }
   navigate() {
     this.router.navigate(['/vehicles/new']);

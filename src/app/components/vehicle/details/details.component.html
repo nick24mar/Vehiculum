@@ -17,11 +17,13 @@
         <li class="list-group-item">Model: {{ vehicle?.model }} </li>
         <li class="list-group-item">Price: {{ vehicle?.price | currency:'PHP':'symbol-narrow':'1.2-2' }}</li>
         <li class="list-group-item">Speed: {{ vehicle?.speed | number:'1.0' }} km</li>
-        <li class="list-group-item">Registered : {{ vehicle?.isRegistered }}</li>
+        <li class="list-group-item">Registered : {{ vehicle?.isregistered ? 'Yes' : 'No' }}</li>
       </ul>
 
       <div class="card-body">
-        <button type="button" class="btn btn-danger" *ngIf="auth.user | async" (click)="deleteVehicle()">Delete</button>
+        <button type="button" class="btn btn-outline-primary" *ngIf="vehicle?.user.uid !== currentUser?.uid">Call Seller</button>
+        <button type="button" class="btn btn-danger" *ngIf="vehicle?.user.uid === currentUser?.uid" (click)="deleteVehicle()">Delete</button>
+        <button type="button" class="btn btn-info" *ngIf="vehicle?.user.uid === currentUser?.uid">Mark as sold</button>
       </div>
 
       <p class="card-text">
