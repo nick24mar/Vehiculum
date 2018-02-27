@@ -5,7 +5,7 @@ export class Vehicle {
     imgUrl: string;
     make: string;
     model: string;
-    captions: string;
+    caption: string;
     price: number;
     lastupdate: number;
     dateadded: number;

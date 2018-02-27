@@ -33,7 +33,13 @@ export class VehicleFormComponent implements OnInit {
 
   submitVehicle() {
     const data: Vehicle = this.vehicleForm.value;
-    this.vehicleSvc.addVehicle(data)
+    data.imgUrl = data.imgUrl ? data.imgUrl : 'http://apycom.com/bootstrap-components/data/upload/2017/03/1slides-only.jpg';
+    const user: User = this.user;
+
+    console.log(data);
+    console.log(user);
+
+    this.vehicleSvc.addVehicle(data, user)
       .then(() =>  {
         this.done = true;
         this.router.navigate(['/vehicles']);
@@ -49,7 +55,7 @@ export class VehicleFormComponent implements OnInit {
       price: ['0', Validators.required],
       speed: ['0', Validators.required],
       imgUrl: ['', Validators.required],
-      isRegistered: [false, Validators.required]
+      isregistered: [false, Validators.required]
     });
   }
 

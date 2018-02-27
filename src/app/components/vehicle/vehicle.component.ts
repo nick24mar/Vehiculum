@@ -27,6 +27,7 @@ export class VehicleComponent implements OnInit {
       });
 
     this.auth.user.subscribe(user => {
+      console.log(user);
       this.isLoggedIn = user ? true : false;
     });
   }

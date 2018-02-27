@@ -35,11 +35,21 @@ export class VehiclesService {
     return this.vehicle;
   }
 
-  addVehicle(vehicle: Vehicle) {
-    vehicle.lastupdate = Date.now();
-    vehicle.dateadded = Date.now();
+  addVehicle(vehicle: Vehicle, user: User) {
+    const data: Vehicle = {
+      make: vehicle.make,
+      model: vehicle.model,
+      caption: vehicle.caption,
+      price: vehicle.price,
+      lastupdate: Date.now(),
+      dateadded: Date.now(),
+      isregistered: vehicle.isregistered,
+      speed: vehicle.speed,
+      imgUrl: vehicle.imgUrl,
+      user: user
+    };
 
-    return this.vehicleCollection.add(vehicle);
+    return this.vehicleCollection.add(data);
   }
 
   deleteVehicle(id: string) {
