@@ -28,6 +28,12 @@
 
 </div>
 
+<div *ngIf="vehicles?.length == 0">
+  <p>Vehicle list is currently emty.</p>
+  <p *ngIf="!isLoggedIn">No account? sign up
+      <a [routerLink]="['/signup']">here.</a>
+  </p>
+</div>
 
 <ng-template #loading>
   <div class="loader-container">

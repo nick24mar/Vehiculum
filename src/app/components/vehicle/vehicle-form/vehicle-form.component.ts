@@ -36,9 +36,6 @@ export class VehicleFormComponent implements OnInit {
     data.imgUrl = data.imgUrl ? data.imgUrl : 'http://apycom.com/bootstrap-components/data/upload/2017/03/1slides-only.jpg';
     const user: User = this.user;
 
-    console.log(data);
-    console.log(user);
-
     this.vehicleSvc.addVehicle(data, user)
       .then(() =>  {
         this.done = true;

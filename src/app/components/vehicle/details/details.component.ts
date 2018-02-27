@@ -36,10 +36,7 @@ export class DetailsComponent implements OnInit {
   deleteVehicle() {
     this.vehicleSvc
       .deleteVehicle(this.vehicleId)
-      .then(() => {
-        console.log("successfully deleted");
-        this.router.navigate(["/vehicles"]);
-      })
+      .then(() => this.router.navigate(["/vehicles"]))
       .catch(err => console.log(err));
   }
 }

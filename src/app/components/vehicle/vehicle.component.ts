@@ -23,7 +23,8 @@ export class VehicleComponent implements OnInit {
   ngOnInit() {
     this.vehicleSvc.getVehicles()
       .subscribe(vehicle =>
-        this.vehicles = vehicle);
+        this.vehicles = vehicle
+      );
 
     this.auth.user.subscribe(user =>
       this.isLoggedIn = user ? true : false);

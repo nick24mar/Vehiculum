@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
-  firebaseConfig : {
-    apiKey: 'AIzaSyADWJ-Aj2Ijy6FHdL27Mb9vie7pXKIJgm4',
-    authDomain: 'firestartertest-db62a.firebaseapp.com',
-    databaseURL: 'https://firestartertest-db62a.firebaseio.com',
-    projectId: 'firestartertest-db62a',
-    storageBucket: 'firestartertest-db62a.appspot.com',
-    messagingSenderId: '785164635143'
+  firebaseConfig: {
+    apiKey: 'AIzaSyDi-8GWEoUGc3JhuEuCQZZ0mKul6rYWWSw',
+    authDomain: 'vehiculum-online.firebaseapp.com',
+    databaseURL: 'https://vehiculum-online.firebaseio.com',
+    projectId: 'vehiculum-online',
+    storageBucket: 'vehiculum-online.appspot.com',
+    messagingSenderId: '709627351832'
   }
 };
