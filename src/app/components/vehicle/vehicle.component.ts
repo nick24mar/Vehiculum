@@ -7,7 +7,7 @@ import { AuthService } from '../../services/user/auth.service';
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
-  styleUrls: ['./vehicle.component.css']
+  styleUrls: ['./vehicle.component.scss']
 })
 export class VehicleComponent implements OnInit {
 

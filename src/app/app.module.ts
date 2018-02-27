@@ -1,12 +1,14 @@
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
@@ -30,6 +32,7 @@ import { SignupComponent } from './components/user/signup/signup.component';
     SignupComponent,
   ],
   imports: [
+    MDBBootstrapModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -38,6 +41,7 @@ import { SignupComponent } from './components/user/signup/signup.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     RouterModule.forRoot(AppRoutes)
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [VehiclesService, AuthService],
   bootstrap: [AppComponent]
 })
