@@ -3,7 +3,10 @@
 
   <!-- Navbar brand -->
   <logo>
-    <a class="navbar-brand" [routerLink]="['/']">Vehiculum</a>
+    <a class="navbar-brand" [routerLink]="['/']">
+      <i class="fa fa-car"></i>
+      Vehiculum
+    </a>
   </logo>
 
   <links>
@@ -13,7 +16,10 @@
 
     <ul class="navbar-nav mr-right">
       <li class="nav-item">
-        <a class="nav-link waves-light stylish-color" [routerLink]="['/login']" *ngIf="!user" mdbRippleRadius>Login</a>
+        <a class="nav-link waves-light" [routerLink]="['/login']" *ngIf="!user" mdbRippleRadius>
+          <i class="fa fa-sign-in fa-1x"></i>
+          Login
+        </a>
       </li>
 
       <li class="nav-item" *ngIf="user">

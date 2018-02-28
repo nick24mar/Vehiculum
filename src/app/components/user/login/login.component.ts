@@ -12,20 +12,24 @@ import { AuthService } from '../../../services/user/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  loading = false;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, public auth: AuthService) { }
 
   ngOnInit() {
     this.initForm();
   }
 
   loginWithEmail() {
+    this.loading = true;
+
     const credentials: UserCredentials = {
       email: this.email.value,
       password: this.password.value
     };
 
-    return this.auth.loginWithEmail(credentials);
+    this.auth.loginWithEmail(credentials)
+      .then(() => this.loading = !this.loading);
   }
 
   private initForm(): void {

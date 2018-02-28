@@ -1,11 +1,17 @@
-<div class="card mb-3">
+<div class="card card-cascade wider reverse my-4">
 
   <div *ngIf="!vehicle; else loaded" class="loader-container">
     <div class="loader"></div>
   </div>
 
   <ng-template #loaded>
-    <img class="card-img-top" [src]="vehicle?.imgUrl" alt="Card image cap">
+    <div class="view overlay hm-white-slight waves-light" mdbRippleRadius>
+      <img [src]="vehicle?.imgUrl" class="img-fluid" width="100%">
+      <a>
+        <div class="mask"></div>
+      </a>
+    </div>
+
     <div class="card-body">
       <h5 class="card-title">{{ vehicle?.make }}, {{ vehicle?.model }}</h5>
       <p class="card-text">
@@ -21,7 +27,7 @@
       </ul>
 
       <div class="card-body">
-        <button type="button" class="btn btn-outline-primary" *ngIf="vehicle?.user.uid !== currentUser?.uid">Call Seller</button>
+        <button type="button" class="btn btn-outline-primary waves-light" *ngIf="vehicle?.user.uid !== currentUser?.uid">Call Seller</button>
         <button type="button" class="btn btn-danger" *ngIf="vehicle?.user.uid === currentUser?.uid" (click)="deleteVehicle()">Delete</button>
         <button type="button" class="btn btn-info" *ngIf="vehicle?.user.uid === currentUser?.uid">Mark as sold</button>
       </div>
@@ -32,3 +38,5 @@
     </div>
   </ng-template>
 </div>
+
+

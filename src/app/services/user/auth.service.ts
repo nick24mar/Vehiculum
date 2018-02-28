@@ -16,6 +16,7 @@ export class AuthService {
 
   private userRef: AngularFirestoreDocument<User>;
   user: Observable<User>;
+  private errorMessage: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -35,27 +36,37 @@ export class AuthService {
     return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then(user => {
         this.setUserDoc(user, fullName);
+        this.errorMessage = '';
         this.router.navigate(['/vehicles']);
       })
-      .catch(error => this.handleError(error.message));
+      .catch(error => this.errorMessage = error.message);
   }
 
   loginWithEmail(credentials: UserCredentials) {
     return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(() => this.router.navigate(['/vehicles']))
-      .catch(error => this.handleError(error.message));
+      .then(() => {
+      this.errorMessage = '';
+      this.router.navigate(['/vehicles']);
+      })
+      .catch(error => this.errorMessage = error.message);
   }
 
   logoutUser() {
     return this.afAuth.auth.signOut()
-      .then(() => this.router.navigate(['/login']))
-      .catch(error => this.handleError(error.message));
+      .then(() => {
+        this.errorMessage = '';
+        this.router.navigate(['/login']);
+      })
+      .catch(error => this.errorMessage = error.message);
   }
 
   updateUser(user: User, data: any) {
     return this.afs.doc(`users/${user.uid}`).update(data)
-      .then(() => this.router.navigate(['/login']))
-      .catch(error => this.handleError(error.message));
+      .then(() => {
+        this.errorMessage = '';
+        this.router.navigate(['/login']);
+      })
+      .catch(error => this.errorMessage = error.message);
   }
 
   private setUserDoc(user, fullName: string) {
@@ -70,7 +81,7 @@ export class AuthService {
     return this.userRef.set(data);
   }
 
-  private handleError(errMsg) {
-    console.log(errMsg);
+  get errorMssg() {
+    return this.errorMessage;
   }
 }
